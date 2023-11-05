@@ -1,6 +1,3 @@
-################## project_blog > settings.py##############
-
-
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,10 +25,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main',
+    # 'main',
     'blog',
-    'accounts',
-    'comments',
+    # 'accounts',
+    # 'comments',
 ]
 
 MIDDLEWARE = [
@@ -44,7 +41,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'project_blog.urls'
+ROOT_URLCONF = 'projectblog.urls'
 
 TEMPLATES = [
     {
@@ -62,7 +59,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'project_blog.wsgi.application'
+WSGI_APPLICATION = 'projectblog.wsgi.application'
 
 
 # Database
@@ -122,3 +119,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
+
+LOGIN_URL = '/accounts/'
+LOGOUT_URL = '/accounts/'
