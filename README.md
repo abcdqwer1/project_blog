@@ -169,7 +169,7 @@ https://github.com/abcdqwer1/project_blog/assets/68181016/79b6b986-9ac8-499b-9b3
 
 
 
-## 트러블슈팅
+## 9. 트러블슈팅
 
 1. DEBUG 설정을 True -> False로 변경한 경우 static, media 폴더를 사용 할 수 없는 문제
 
@@ -191,7 +191,5 @@ from django.urls import re_path
 urlpatterns += re_path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),  
 urlpatterns += re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
 
-## 개발하며 느낀점
 
-Django로 개발하며 
 
