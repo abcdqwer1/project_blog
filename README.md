@@ -1,4 +1,4 @@
-![image](https://github.com/abcdqwer1/project_blog/assets/68181016/914a7e28-24cd-48e0-b56e-b379427c96f7)# project_blog
+# project_blog
 
 ## 1. 프로젝트 소개
 Python, Django, Nginx, MySQL, Linux 등 프로그래밍과 관련된 모든 기술의 이슈를 정리하는 블로그입니다.
@@ -137,7 +137,7 @@ https://dbdiagram.io/d/project_blog-6539babbffbf5169f0783396
 - 화면 오른쪽에 1.글쓰기를 눌러 글 작성이 가능합니다.
 - 글쓰기 아래 2.검색 기능이 구현되어있습니다.
 - 게시글을 확인하려면 3번 자세히보기 버튼이나 게시글의 썸네일이미지를 클릭하면 됩니다.
-
+<br>
 
 ![image](https://github.com/abcdqwer1/project_blog/assets/68181016/2e66b1fb-0fe3-48f0-b0db-383a34d565b5)
 
@@ -145,9 +145,11 @@ https://dbdiagram.io/d/project_blog-6539babbffbf5169f0783396
 - 게시글 내용에는 제목, 게시글 생성일자, 조회수, 태그, 내용, 댓글이 있습니다.
 - 하단에는 목록, 수정, 삭제 버튼이 있습니다.
 - 수정, 삭제 버튼은 해당 게시글을 작성한 아이디만 보여지며, 사용 또한 마찬가지입니다.
+<br>
 
 ![image](https://github.com/abcdqwer1/project_blog/assets/68181016/bc7051ff-b80b-4b60-8d8a-f3c4f0c0978e)
 - 댓글을 남기게되면 아이디, 댓글내용, 작성일자로 이루어진 댓글이 생성됩니다.
+<br>
 
 https://github.com/abcdqwer1/project_blog/assets/68181016/5187e080-9a3a-4a31-83b0-a2fcac53dbdc
 
@@ -157,9 +159,13 @@ https://github.com/abcdqwer1/project_blog/assets/68181016/c131ea34-af19-4a88-abf
 
 - 댓글 기능 
 
-![로그인 로그아웃 글수정 검색 기능 확인](https://github.com/abcdqwer1/project_blog/assets/68181016/89bfb56f-fbf9-4a55-9ce2-db9256b13998)
+https://github.com/abcdqwer1/project_blog/assets/68181016/ab953a9d-65cd-43d0-8429-ae98fcf77d0a
 
-- 로그인 로그아웃 글수정 검색 기능 확인
+- 로그인, 로그아웃
+
+https://github.com/abcdqwer1/project_blog/assets/68181016/79b6b986-9ac8-499b-9b33-17b5af64a2ef
+
+- 글수정, 검색기능
 
 
 
@@ -167,14 +173,25 @@ https://github.com/abcdqwer1/project_blog/assets/68181016/c131ea34-af19-4a88-abf
 
 1. DEBUG 설정을 True -> False로 변경한 경우 static, media 폴더를 사용 할 수 없는 문제
 
-404 페이지 확인을 위해 sattings.py 에 DEBUG 설정을 False 로 변경했을때 블로그에 썸네일 이미지가 전부 나오지 않는걸 확인하고 해당 에러를 발견했다.
 
-runserver시 --insecure 옵션을 주면 static 폴더는 사용 할 수 있는것으로 확인됐지만 media는 여전히 사용 불가인 상황이었고 직접 urls.py에 경로 설정을 해주어 해결하였다.
+404 페이지 확인을 위해 sattings.py 에 DEBUG 설정을 False 로 변경했을때 블로그에 썸네일 이미지가 전부 나오지 않는걸 확인하고 해당 에러를 발견했다.  
 
-from django.views.static import serve
-from django.urls import re_path
 
-urlpatterns += re_path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
+runserver시 --insecure 옵션을 주면 static 폴더는 사용 할 수 있는것으로 확인됐지만 media는 여전히 사용 불가했고, 심지어 배포 후 실서비스는 WEB, WAS를 나누어 웹서버에서 정적파일을 서비스하는 경우가 많았다.  
+
+
+여기저기 확인 해본 결과 urls.py에 직접 경로 설정을 해주었고 정상 동작하는것을 확인했다.  
+
+
+urls.py 추가내용
+from django.views.static import serve  
+from django.urls import re_path  
+
+
+urlpatterns += re_path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),  
 urlpatterns += re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
 
 ## 개발하며 느낀점
+
+Django로 개발하며 
+
