@@ -11,7 +11,8 @@
                 <header class="mb-4">
                     <h1 class="fw-bolder mb-1">{{object.title}}</h1>
                         <div class="text-muted fst-italic mb-2">
-                            Posted on {{object.created_at}}
+                            <p>Posted on {{object.created_at}}</p>
+                            게시글 조회수 {{object.view_count}}
                         </div>
                     <a class="badge bg-secondary text-decoration-none link-light" href="#!">{{object.tags}}</a>
                 </header>
