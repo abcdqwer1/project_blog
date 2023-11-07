@@ -13,6 +13,7 @@ signup = CreateView.as_view(
 
 login = LoginView.as_view(
     template_name = 'accounts/form.html',
+    next_page = settings.LOGOUT_URL,
 )
 
 logout = LogoutView.as_view(
