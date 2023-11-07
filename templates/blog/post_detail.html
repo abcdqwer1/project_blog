@@ -10,13 +10,11 @@
 
                 <header class="mb-4">
                     <h1 class="fw-bolder mb-1">{{object.title}}</h1>
-                    <div class="text-muted fst-italic mb-2">Posted on {{object.created_at}}</div>
+                        <div class="text-muted fst-italic mb-2">
+                            Posted on {{object.created_at}}
+                        </div>
                     <a class="badge bg-secondary text-decoration-none link-light" href="#!">{{object.tags}}</a>
                 </header>
-
-                {% if post.thumb_image %}
-                    <figure class="mb-4"><img class="img-fluid rounded" src="{{object.thumb_image.url}}" alt="..." /></figure>
-                {% endif %}
                 
                 <section class="mb-5">
                     <p class="fs-5 mb-4">{{post.content}}</p>
@@ -36,37 +34,9 @@
                 <div class="card bg-light">
                     <div class="card-body">
 
-                        <!-- Comment form-->
-                        <form class="mb-4" action="{% url 'blog:comment_new' post.pk %}" method="post">
-                            {% csrf_token %}
-                            {% comment %} {{ comment_form.as_p }} {% endcomment %}
-
-                            <textarea class="form-control" rows="3" placeholder="댓글을 남겨주세요.">
-                            </textarea>
-                        <input type="submit" value="댓글 작성">
-                        </form>
-
-                        <!-- Comment with nested comments-->
-                        <div class="d-flex mb-4">
-                            <!-- Parent comment-->
-                            <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                            <div class="ms-3">
-                                <div class="fw-bold">{{user}}</div>
-                                If you
-                                <!-- Child comment 1-->
-                                <div class="d-flex mt-4">
-                                    <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                    <div class="ms-3">
-                                        <div class="fw-bold">Commenter Name</div>
-                                        And under those conditions, you cannot establish a capital-market evaluation of that enterprise. You can't get investors.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="mt-4">
                             <h4 class="text-dark">댓글</h4>
-                            <dir class="list-group">
+                            <div class="list-group">
                                 {% for comment in post.comments.all %}
                                     <li class="list-group-item">
                                         <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /> 
@@ -80,65 +50,73 @@
                                         </small>
                                     </li>
                                 {% endfor %}
-                            </dir>
+                            </div>
 
                             {% if post.comments.all.count == 0 %}
                                 <p>댓글이 없습니다.</p>
                             {% endif %}
                         </div>
+                        <form class="mb-4" action="{% url 'blog:comment_new' post.pk %}" method="post">
+                            {% csrf_token %}
+                            {{ comment_form.as_p }}
+                        <input class="btn btn-secondary" type="submit" value="댓글 작성">
+                        </form>
                     </div>
                 </div>
             </section>
             </div>
 
-
-{% comment %} <a href="{% url 'blog:post_list' %}">목록</a>
-{% if user == post.author %}
-<a href="{% url 'blog:post_edit' post.pk %}">수정</a>
-<a href="{% url 'blog:post_delete' post.pk %}">삭제</a>
-{% endif %} {% endcomment %}
-
 <!-- Side widgets-->
-<div class="col-lg-4">
-    <!-- Search widget-->
-    <div class="card mb-4">
-        <div class="card-header">Search</div>
-        <div class="card-body">
-            <div class="input-group">
-                <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                <button class="btn btn-primary" id="button-search" type="button">Go!</button>
-            </div>
-        </div>
-    </div>
-    <!-- Categories widget-->
-    <div class="card mb-4">
-        <div class="card-header">Categories</div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-sm-6">
-                    <ul class="list-unstyled mb-0">
-                        <li><a href="#!">Web Design</a></li>
-                        <li><a href="#!">HTML</a></li>
-                        <li><a href="#!">Freebies</a></li>
-                    </ul>
-                </div>
-                <div class="col-sm-6">
-                    <ul class="list-unstyled mb-0">
-                        <li><a href="#!">JavaScript</a></li>
-                        <li><a href="#!">CSS</a></li>
-                        <li><a href="#!">Tutorials</a></li>
-                    </ul>
+        <div class="col-lg-4">
+            
+            <!-- Search widget-->
+            <div class="card mb-4">
+                <div class="card-header">Search</div>
+                <div class="card-body">
+                    <div class="input-group">
+                        <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
+                        <button class="btn btn-primary" id="button-search" type="button">Go!</button>
+                    </div>
                 </div>
             </div>
+            <!-- Categories widget-->
+            <div class="card mb-4">
+                <div class="card-header">Categories</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <ul class="list-unstyled mb-0">
+                                <li><a href="#!">Web Design</a></li>
+                                <li><a href="#!">HTML</a></li>
+                                <li><a href="#!">Freebies</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6">
+                            <ul class="list-unstyled mb-0">
+                                <li><a href="#!">JavaScript</a></li>
+                                <li><a href="#!">CSS</a></li>
+                                <li><a href="#!">Tutorials</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Side widget-->
+            <div class="card mb-4 ">
+                <div class="card-header">위젯</div>
+                <div class="card-body">위젯입니다.</div>
+            </div>
         </div>
-    </div>
-    <!-- Side widget-->
-    <div class="card mb-4">
-        <div class="card-header">Side Widget</div>
-        <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
-    </div>
+        </div>
+        </div>
+
+<div class="text-end mt-4 translate-middle">
+    <a href="{% url 'blog:post_list' %}" class="btn btn-secondary">목록</a>
+    {% if user == post.author %}
+        <a href="{% url 'blog:post_edit' post.pk %}" class="btn btn-secondary">수정</a>
+        <a href="{% url 'blog:post_delete' post.pk %}" class="btn btn-secondary">삭제</a>
+    {% endif %}
 </div>
-</div>
-</div>
+
 
 {% endblock %}
