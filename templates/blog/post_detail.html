@@ -19,15 +19,15 @@
 
 <section>
     <h3>댓글 작성</h3>
-    <form action{% url 'tube:comment_new' post.pk %}" method="post">
+    <form action{% url 'blog:comment_new' post.pk %}" method="post">
         {% csrf_token %}
         {{ comment_form.as_p }}
         <input type="submit" value="댓글 작성">
     </form>
 </section>
 
-<a href="{% url 'tube:post_list' %}">목록</a>
+<a href="{% url 'blog:post_list' %}">목록</a>
 {% if user == post.author %}
-<a href="{% url 'tube:post_edit' post.pk %}">수정</a>
-<a href="{% url 'tube:post_delete' post.pk %}">삭제</a>
+<a href="{% url 'blog:post_edit' post.pk %}">수정</a>
+<a href="{% url 'blog:post_delete' post.pk %}">삭제</a>
 {% endif %}
