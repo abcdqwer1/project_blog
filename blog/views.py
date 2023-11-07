@@ -5,7 +5,7 @@ from django.db.models.query import QuerySet
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.views.generic import ListView, DeleteView, UpdateView, DetailView, CreateView
-from .models import Post, Comment
+from .models import Post, Comment, Tag
 from .forms import PostForm, CommentForm
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
@@ -67,6 +67,11 @@ class PostUpdateView(UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         return self.get_object().author == self.request.user
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comment_form'] = CommentForm()
+        return context
 
 
 post_edit = PostUpdateView.as_view()
@@ -81,6 +86,17 @@ class PostDeleteView(UserPassesTestMixin, DeleteView):
 
 post_delete = PostDeleteView.as_view()
 
+class TagView(ListView):
+    model = Post
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        q = self.kwargs['tag']
+        if q:
+            qs = qs.filter(title__icontains=q)
+        return qs
+
+post_tag = TagView.as_view()
 
 @login_required
 def comment_new(request, pk):
@@ -88,7 +104,7 @@ def comment_new(request, pk):
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
-            comment = form.save(commit=False) # commit=False는 DB에 저장하지 않고 객체만 반환
+            comment = form.save(commit=False) 
             comment.post = post
             comment.author = request.user
             comment.save()
