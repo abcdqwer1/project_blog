@@ -12,6 +12,9 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['message']
+        widgets = {
+            'message': forms.Textarea(attrs={'class': 'form-control', 'rows': 4, 'cols': 40, 'placeholder' : "댓글을 남겨주세요."})
+        }
 
 
 class TagForm(forms.ModelForm):
