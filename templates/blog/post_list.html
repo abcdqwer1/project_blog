@@ -3,79 +3,29 @@
 {% block content %}
 {% load static %}
 
-
-        <!-- Page Header-->
-        <header class="masthead" style="background-image: url('assets/img/post-bg.jpg')">
-            <div class="container">
-                <div class="text-center my-5">
-                    <h1 class="fw-bolder">Welcome to Blog Home!</h1>
-                    <p class="lead mb-0">A Bootstrap 5 starter layout for your next blog homepage</p>
-                </div>
-            </div>
-        </header>
-        {% comment %} <header class="py-5 bg-gray border-bottom mb-4">
-        </header> {% endcomment %}
-        <!-- Page content-->
         <div class="container">
             <div class="row">
-                <!-- Blog entries-->
                 <div class="col-lg-8">
-                    <!-- Featured blog post-->
-                    {% comment %} <div class="card mb-4">
-                        <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
-                        <div class="card-body">
-                            <div class="small text-muted">January 1, 2023</div>
-                            <h2 class="card-title">Featured Post Title</h2>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-                            <a class="btn btn-primary" href="#!">Read more →</a>
-                        </div>
-                    </div> {% endcomment %}
-                    <!-- Nested row for non-featured blog posts-->
                     <div class="row">
-                        <div class="col-lg-6">
+
                             <!-- Blog post-->
-                            <div class="card mb-4">
-                                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
-                                <div class="card-body">
-                                    <div class="small text-muted">January 1, 2023</div>
-                                    <h2 class="card-title h4">Post Title</h2>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
-                                    <a class="btn btn-primary" href="#!">Read more →</a>
+                        {% for post in object_list %}
+                            <div class="col-lg-6">
+                                <div class="card mb-4">
+                                    <a href="{% url 'blog:post_detail' post.pk %}">
+                                        {% if post.thumb_image %}
+                                        <img class='img-fluid' src="{{ post.thumb_image.url }}" alt="{{ post.title }}">
+                                        {% endif %}
+                                    </a>
+                                    <div class="card-body">
+                                        <div class="small text-muted">{{ post.created_at }}</div>
+                                        <h2 class="card-title h4">{{ post.title }}</h2>
+                                        <p class="card-text">{{ post.content|truncatewords:30 }}</p>
+                                        <a class="btn btn-primary" href="{% url 'blog:post_detail' post.pk %}">자세히 보기 →</a>
+                                    </div>
                                 </div>
                             </div>
-                            <!-- Blog post-->
-                            <div class="card mb-4">
-                                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
-                                <div class="card-body">
-                                    <div class="small text-muted">January 1, 2023</div>
-                                    <h2 class="card-title h4">Post Title</h2>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
-                                    <a class="btn btn-primary" href="#!">Read more →</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <!-- Blog post-->
-                            <div class="card mb-4">
-                                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
-                                <div class="card-body">
-                                    <div class="small text-muted">January 1, 2023</div>
-                                    <h2 class="card-title h4">Post Title</h2>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
-                                    <a class="btn btn-primary" href="#!">Read more →</a>
-                                </div>
-                            </div>
-                            <!-- Blog post-->
-                            <div class="card mb-4">
-                                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
-                                <div class="card-body">
-                                    <div class="small text-muted">January 1, 2023</div>
-                                    <h2 class="card-title h4">Post Title</h2>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam.</p>
-                                    <a class="btn btn-primary" href="#!">Read more →</a>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                     <!-- Pagination-->
                     <nav aria-label="Pagination">
@@ -127,7 +77,8 @@
                     </div>
                     <!-- Side widget-->
                     <div class="card mb-4">
-                        <!-- weather widget start --><div id="m-booked-bl-simple-1168"> <div class="booked-wzs-160-110 weather-customize" style="background-color:#137AE9;width:160px;" id="width1"> <div class="booked-wzs-160-110_in"> <div class="booked-wzs-160-data"> <div class="booked-wzs-160-left-img wrz-18"></div> <div class="booked-wzs-160-right"> <div class="booked-wzs-day-deck"> <div class="booked-wzs-day-val"> <div class="booked-wzs-day-number"><span class="plus">+</span>17</div> <div class="booked-wzs-day-dergee"> <div class="booked-wzs-day-dergee-val">&deg;</div> <div class="booked-wzs-day-dergee-name">C</div> </div> </div> <div class="booked-wzs-day"> <div class="booked-wzs-day-d"><span class="plus">+</span>20&deg;</div> <div class="booked-wzs-day-n"><span class="plus">+</span>7&deg;</div> </div> </div> <div class="booked-wzs-160-info"> <div class="booked-wzs-160-city">죽림동</div> <div class="booked-wzs-160-date">월요일, 06</div> </div> </div> </div> <div class="booked-wzs-center"><span class="booked-wzs-bottom-l"> 7일 예보 보기</span></div> </div> </div> </div><script type="text/javascript"> var css_file=document.createElement("link"); var widgetUrl = location.href; css_file.setAttribute("rel","stylesheet"); css_file.setAttribute("type","text/css"); css_file.setAttribute("href",'https://s.bookcdn.com/css/w/booked-wzs-widget-160.css?v=0.0.1'); document.getElementsByTagName("head")[0].appendChild(css_file); function setWidgetData_1168(data) { if(typeof(data) != 'undefined' && data.results.length > 0) { for(var i = 0; i < data.results.length; ++i) { var objMainBlock = document.getElementById('m-booked-bl-simple-1168'); if(objMainBlock !== null) { var copyBlock = document.getElementById('m-bookew-weather-copy-'+data.results[i].widget_type); objMainBlock.innerHTML = data.results[i].html_code; if(copyBlock !== null) objMainBlock.appendChild(copyBlock); } } } else { alert('data=undefined||data.results is empty'); } } var widgetSrc = "https://widgets.booked.net/weather/info?action=get_weather_info;ver=7;cityID=493234;type=1;scode=;ltid=3458;domid=593;anc_id=2221;countday=undefined;cmetric=1;wlangID=24;color=137AE9;wwidth=160;header_color=ffffff;text_color=333333;link_color=08488D;border_form=1;footer_color=ffffff;footer_text_color=333333;transparent=0;v=0.0.1";widgetSrc += ';ref=' + widgetUrl;widgetSrc += ';rand_id=1168';var weatherBookedScript = document.createElement("script"); weatherBookedScript.setAttribute("type", "text/javascript"); weatherBookedScript.src = widgetSrc; document.body.appendChild(weatherBookedScript) </script><!-- weather widget end -->
+                        <div class="card-header">Side Widget</div>
+                        <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
                     </div>
                 </div>
             </div>
@@ -142,4 +93,20 @@
     {% endfor %}
 </ul>
 <a href="{% url 'blog:post_new' %}">업로드</a>
+
+<ul>
+    {% for post in posts %}
+        <li>
+            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+            <ul>
+                Tags:
+                {% for tag in post.tags.all %}
+                    <li><a href="{% url 'tag_posts' tag_name=tag.name %}">{{ tag.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% empty %}
+        <p>게시물이 없습니다.</p>
+    {% endfor %}
+</ul>
 {% endblock %}

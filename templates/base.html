@@ -15,6 +15,7 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+        <link href="{% static 'css/styles2.css' %}" rel="stylesheet" />
     </head>
     <body>
         <!-- Navigation-->
@@ -27,7 +28,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'blog:post_list' %}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'blog:post_list' %}">블로그</a></li>
                         {% if user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url "accounts:logout" %}">로그아웃</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url "accounts:profile" %}">프로필</a></li>
@@ -39,6 +40,14 @@
                 </div>
             </div>
         </nav>
+        <header class="masthead" style="background-image: url({% static 'assets/img/post-bg.jpg' %})">
+            <div class="container">
+                <div class="text-center my-5">
+                    <h1 class="fw-bolder "></h1>
+                    <p class="lead mb-0"></p>
+                </div>
+            </div>
+        </header>
 
         {% block content %}
         {% endblock %}
@@ -74,7 +83,7 @@
                                 </a>
                             </li>
                         </ul>
-                        <div class="small text-center text-muted fst-italic">Copyright &copy; Your Website 2023</div>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy;LEE 2023</div>
                     </div>
                 </div>
             </div>
