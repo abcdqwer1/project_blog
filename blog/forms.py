@@ -5,7 +5,14 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         # fields = '__all__'
-        fields = ['title', 'content', 'thumb_image', 'file_upload'] 
+        fields = ['title', 'content', 'thumb_image', 'file_upload', 'tags'] 
+        widgets ={
+            'title': forms.TextInput(attrs={'class': 'form-control postform'}),
+            'content': forms.Textarea(attrs={'class': 'form-control postform', 'rows': 8, 'placeholder' : "글을 작성해주세요"}),
+            'thumb_image': forms.ClearableFileInput(attrs={'class': 'form-control-file postform'}),
+            'file_upload': forms.ClearableFileInput(attrs={'class': 'form-control-file postform'}),
+            'tags': forms.SelectMultiple(attrs={'class': 'form-control postform'}),
+        }
 
 
 class CommentForm(forms.ModelForm):
