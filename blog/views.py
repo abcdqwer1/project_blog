@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db import models
 from django.db.models.query import QuerySet
 from django.http import HttpRequest, HttpResponse
+from django.http import Http404, HttpResponseNotFound
 from django.shortcuts import render
 from django.views.generic import ListView, DeleteView, UpdateView, DetailView, CreateView
 from .models import Post, Comment, Tag
@@ -33,8 +34,8 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     template_name = 'blog/form.html'
 
     def form_valid(self, form):
-        video = form.save(commit=False) 
-        video.author = self.request.user
+        new_post = form.save(commit=False) 
+        new_post.author = self.request.user
         return super().form_valid(form)
 
 post_new = PostCreateView.as_view()
