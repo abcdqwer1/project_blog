@@ -1,4 +1,4 @@
-# project_blog
+# Engineering_BLOG
 
 ## 1. 프로젝트 소개
 Python, Django, Nginx, MySQL, Linux 등 프로그래밍과 관련된 모든 기술의 이슈를 정리하는 블로그입니다.
@@ -18,9 +18,7 @@ Django를 이용하여 기술 블로그를 만들고 개발하며 생기는 이�
 - 게시글 작성, 수정, 삭제
 - 게시글 내 댓글
 
-## 3. 배포 URL
-
-## 4. 개발 환경
+## 3. 개발 환경
 <div align=center>
 <img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white">
 <img src="https://img.shields.io/badge/django-092E20?style=for-the-badge&logo=django&logoColor=white">
@@ -31,13 +29,13 @@ Django를 이용하여 기술 블로그를 만들고 개발하며 생기는 이�
 <img src="https://img.shields.io/badge/bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white">
 </div>
 
-## 5. 개발 일정
+## 4. 개발 일정
 ![image](https://github.com/abcdqwer1/project_blog/assets/68181016/05180271-c294-451f-acc7-d67f6e35b92a)
 <br>
 https://docs.google.com/spreadsheets/d/1T2Jk1f3INWnJgWd8X1gpVTpYAEZ_OzIpdwCJ0moCY0k/edit#gid=0
 
-## 6 프로젝트 구조
-### 6.1 디렉토리 구조
+## 5 프로젝트 구조
+### 5.1 디렉토리 구조
 ```
 📦project_blog
 ┣ 📂accounts
@@ -103,17 +101,17 @@ https://docs.google.com/spreadsheets/d/1T2Jk1f3INWnJgWd8X1gpVTpYAEZ_OzIpdwCJ0moC
  ┃ ┗ 📜base.html
  ┣ 📂venv
 ```
-### 6.2 프로젝트 구조
+### 5.2 프로젝트 구조
 ![image](https://github.com/abcdqwer1/project_blog/assets/68181016/ef686a88-efb3-46ff-960d-f3f5bbfa5c06)
 <br>
 https://www.mindmeister.com/app/map/2922826653
 
-## 7. DB 모델링
+## 6. DB 모델링
 ![image](https://github.com/abcdqwer1/project_blog/assets/68181016/6dc6d799-bad7-4a7f-a940-4eddc16ee3e4)
 <br>
 https://dbdiagram.io/d/project_blog-6539babbffbf5169f0783396
 
-## 8. UI
+## 7. UI
 ![image](https://github.com/abcdqwer1/project_blog/assets/68181016/ef5b0927-bb4c-479d-9120-744c8999f866)
 
 - 메인 페이지
@@ -169,7 +167,7 @@ https://github.com/abcdqwer1/project_blog/assets/68181016/79b6b986-9ac8-499b-9b3
 
 
 
-## 9. 트러블슈팅
+## 8. 트러블슈팅
 
 1. DEBUG 설정을 True -> False로 변경한 경우 static, media 폴더를 사용 할 수 없는 문제
 
